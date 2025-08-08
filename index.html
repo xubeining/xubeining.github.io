@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>我的个人主页</title>
+  <style>
+    :root{
+      --bg:#0b0c10;
+      --card:#12141a;
+      --muted:#9aa3b2;
+      --text:#e6e9ef;
+      --accent:#5b8cff;
+      --border:#1f232b;
+      --maxw:1100px;
+      --radius:18px;
+      --gap:20px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:var(--maxw);margin:0 auto;padding:28px 18px}
+    .section-title{font-size:20px;margin:0 0 14px 0;letter-spacing:.3px}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px}
+    /* Header */
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:var(--gap);align-items:center}
+    .hero .bio h1{margin:0 0 8px 0;font-size:28px}
+    .hero .bio p{margin:0 0 12px 0;color:var(--muted)}
+    .hero .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .tag{border:1px solid var(--border);padding:6px 10px;border-radius:999px;font-size:13px;color:var(--muted);background:#0e1016}
+    .avatar-wrap{display:flex;justify-content:center}
+    .avatar{width:220px;height:220px;border-radius:16px;object-fit:cover;border:1px solid var(--border);box-shadow:0 6px 18px rgba(0,0,0,.35)}
+    /* News */
+    .news-list{display:grid;gap:12px;margin:0;padding:0;list-style:none}
+    .news-item{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px}
+    .badge{font-size:12px;border:1px solid var(--border);padding:3px 8px;border-radius:999px;color:var(--muted);white-space:nowrap}
+    .news-content{flex:1}
+    .news-title{margin:0 0 4px 0;font-weight:600}
+    .news-meta{font-size:13px;color:var(--muted)}
+    /* Works */
+    .works{display:grid;gap:14px}
+    .work{display:grid;grid-template-columns:180px 1fr;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px}
+    .work img{width:100%;height:120px;object-fit:cover;border-radius:10px;border:1px solid var(--border)}
+    .work h3{margin:0 0 6px 0;font-size:18px}
+    .work p{margin:0;color:var(--muted)}
+    .work .links{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap}
+    /* Footer */
+    footer{opacity:.7;font-size:13px;margin-top:26px;text-align:center}
+    /* Responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;gap:14px}
+      .avatar{width:160px;height:160px}
+      .work{grid-template-columns:120px 1fr}
+      .work img{height:100px}
+    }
+    @media (max-width:520px){
+      .work{grid-template-columns:1fr}
+      .work img{height:180px}
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <!-- Header: left bio, right image -->
+    <section class="hero card" id="about">
+      <div class="bio">
+        <h1>你的名字</h1>
+        <p>一句简短的自我介绍。可以写研究方向、职位、所在机构或兴趣点。建议 2–3 句，突出关键词与优势。</p>
+        <div class="tags">
+          <span class="tag">Machine Learning</span>
+          <span class="tag">Robotics</span>
+          <span class="tag">Optimization</span>
+          <span class="tag">Open Source</span>
+        </div>
+      </div>
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatar.jpg" alt="avatar" />
+      </div>
+    </section>
+
+    <!-- News -->
+    <section style="margin-top:18px">
+      <h2 class="section-title">最新资讯</h2>
+      <ul class="news-list" id="news">
+        <li class="news-item">
+          <span class="badge">2025-08-08</span>
+          <div class="news-content">
+            <p class="news-title">发布个人主页 v1.0</p>
+            <div class="news-meta">在 GitHub 同步了初版主页，欢迎提出建议</div>
+          </div>
+        </li>
+        <li class="news-item">
+          <span class="badge">2025-07-30</span>
+          <div class="news-content">
+            <p class="news-title">论文被接收</p>
+            <div class="news-meta">题目：Emotion-Aware Navigation as Safety Net</div>
+          </div>
+        </li>
+        <!-- Add more <li class="news-item">...</li> -->
+      </ul>
+    </section>
+
+    <!-- Works -->
+    <section style="margin-top:18px">
+      <h2 class="section-title">成果陈列</h2>
+      <div class="works" id="works">
+        <article class="work">
+          <img src="assets/work1.jpg" alt="work cover" />
+          <div>
+            <h3>项目/论文标题 A</h3>
+            <p>简要描述该成果的目标、方法与影响。推荐 1–3 句，并可附上演示或数据链接。</p>
+            <div class="links">
+              <a href="#" target="_blank">Demo</a>
+              <a href="#" target="_blank">Paper</a>
+              <a href="#" target="_blank">Code</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="work">
+          <img src="assets/work2.jpg" alt="work cover" />
+          <div>
+            <h3>项目/论文标题 B</h3>
+            <p>放置另一个成果的简介。左侧为图片封面，右侧为文字说明与外部链接。</p>
+            <div class="links">
+              <a href="#" target="_blank">Website</a>
+              <a href="#" target="_blank">Dataset</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Duplicate <article class="work">...</article> for more items -->
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> 你的名字. All rights reserved.
+    </footer>
+  </main>
+
+  <script>
+    // Minimal helper for current year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
