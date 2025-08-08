@@ -6,22 +6,23 @@
   <title>徐北宁|个人主页</title>
   <style>
     :root{
-      --bg:#ffffff;     /* 页面背景白色 */
-      --card:#1a1d24;   /* 卡片背景深色，方便白色文字显示 */
-      --muted:#ffffff;  /* 正文/辅助文字白色 */
-      --text:#ffffff;   /* 正文白色 */
-      --accent:#89c4ff; /* 链接淡蓝色 */
-      --border:#1f232b;
+      --bg:#ffffff;       /* 页面背景白色 */
+      --card:#ffffff;     /* 模块背景白色 */
+      --content-bg:#12141a;/* 内容区深色背景，保证白色文字可见 */
+      --muted:#ffffff;    /* 内容文字白色 */
+      --text:#ffffff;     /* 内容文字白色 */
+      --accent:#89c4ff;   /* 链接淡蓝色 */
+      --border:#ccc;      /* 浅灰边框 */
       --maxw:1100px;
       --radius:18px;
       --gap:20px;
+      --title-color:#003366; /* 深蓝标题 */
     }
     *{box-sizing:border-box}
     html,body{
       margin:0;
       padding:0;
       background:var(--bg);
-      color:var(--text);
       font:16px/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial;
     }
     a{color:var(--accent);text-decoration:none}
@@ -31,7 +32,7 @@
       font-size:20px;
       margin:0 0 14px 0;
       letter-spacing:.3px;
-      color:#0056b3; /* 蓝色标题 */
+      color:var(--title-color);
     }
     .card{
       background:var(--card);
@@ -44,10 +45,13 @@
     .hero .bio h1{
       margin:0 0 8px 0;
       font-size:28px;
-      color:#0056b3; /* 蓝色标题 */
+      color:var(--title-color);
     }
     .hero .bio p{
       margin:0 0 12px 0;
+      background:var(--content-bg);
+      padding:8px;
+      border-radius:8px;
       color:var(--muted);
     }
     .hero .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
@@ -56,8 +60,8 @@
       padding:6px 10px;
       border-radius:999px;
       font-size:13px;
+      background:var(--content-bg);
       color:var(--muted);
-      background:#0e1016;
     }
     .avatar-wrap{display:flex;justify-content:center}
     .avatar{
@@ -66,30 +70,36 @@
       border-radius:16px;
       object-fit:cover;
       border:1px solid var(--border);
-      box-shadow:0 6px 18px rgba(0,0,0,.35)
     }
     /* News */
     .news-list{display:grid;gap:12px;margin:0;padding:0;list-style:none}
     .news-item{
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
       background:var(--card);
       border:1px solid var(--border);
       border-radius:12px;
-      padding:14px
+      padding:14px;
     }
     .badge{
       font-size:12px;
       border:1px solid var(--border);
       padding:3px 8px;
       border-radius:999px;
+      background:var(--content-bg);
       color:var(--muted);
       white-space:nowrap
     }
-    .news-content{flex:1}
-    .news-title{margin:0 0 4px 0;font-weight:600;color:#0056b3}
-    .news-meta{font-size:13px;color:var(--muted)}
+    .news-title{
+      margin:8px 0 4px 0;
+      font-weight:600;
+      color:var(--title-color);
+    }
+    .news-meta{
+      font-size:13px;
+      background:var(--content-bg);
+      padding:4px;
+      border-radius:6px;
+      color:var(--muted);
+    }
     /* Works */
     .works{display:grid;gap:14px}
     .work{
@@ -108,9 +118,20 @@
       border-radius:10px;
       border:1px solid var(--border)
     }
-    .work h3{margin:0 0 6px 0;font-size:18px;color:#0056b3}
-    .work p{margin:0;color:var(--muted)}
-    .work .links{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap}
+    .work h3{margin:0 0 6px 0;font-size:18px;color:var(--title-color)}
+    .work p{
+      margin:0;
+      background:var(--content-bg);
+      padding:6px;
+      border-radius:6px;
+      color:var(--muted);
+    }
+    .work .links{
+      margin-top:10px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap
+    }
     /* Footer */
     footer{opacity:.7;font-size:13px;margin-top:26px;text-align:center;color:#000}
     /* Responsive */
@@ -148,36 +169,30 @@
     </section>
 
     <!-- News -->
-    <section style="margin-top:18px">
+    <section style="margin-top:18px" class="card">
       <h2 class="section-title">最新资讯</h2>
       <ul class="news-list" id="news">
         <li class="news-item">
           <span class="badge">2025-08-08</span>
-          <div class="news-content">
-            <p class="news-title">发布个人主页 v1.0</p>
-            <div class="news-meta">在 GitHub 同步了初版主页，欢迎提出建议</div>
-          </div>
+          <p class="news-title">发布个人主页 v1.0</p>
+          <div class="news-meta">在 GitHub 同步了初版主页，欢迎提出建议</div>
         </li>
         <li class="news-item">
           <span class="badge">2025-08-07</span>
-          <div class="news-content">
-            <p class="news-title">cnvd漏洞收录</p>
-            <div class="news-meta">深圳市*******有限公司****存在命令执行漏洞</div>
-            <div class="news-meta">漏洞评分 ：10.0</div>
-          </div>
+          <p class="news-title">cnvd漏洞收录</p>
+          <div class="news-meta">深圳市*******有限公司****存在命令执行漏洞</div>
+          <div class="news-meta">漏洞评分 ：10.0</div>
         </li>
         <li class="news-item">
           <span class="badge">2025-7-28</span>
-          <div class="news-content">
-            <p class="news-title">IEECT 2025 Acccept</p>
-            <div class="news-meta">A DeBERTa-BiLSTM-Self-Attention Based Ensemble Model for Sentiment Analysis</div>
-          </div>
+          <p class="news-title">IEECT 2025 Acccept</p>
+          <div class="news-meta">A DeBERTa-BiLSTM-Self-Attention Based Ensemble Model for Sentiment Analysis</div>
         </li>
       </ul>
     </section>
 
     <!-- Works -->
-    <section style="margin-top:18px">
+    <section style="margin-top:18px" class="card">
       <h2 class="section-title">成果陈列</h2>
       <div class="works" id="works">
         <article class="work">
