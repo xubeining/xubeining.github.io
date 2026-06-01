@@ -1,317 +1,565 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Beining Xu | Personal Main Page</title>
+  <title>Beining Xu | Homepage</title>
   <style>
-    :root{
-      --bg:#ffffff;       /* 页面背景白色 */
-      --card:#ffffff;     /* 模块背景白色 */
-      --muted:#000000;    /* 辅助文字黑色 */
-      --text:#000000;     /* 正文文字黑色 */
-      --accent:#89c4ff;   /* 链接淡蓝色 */
-      --border:#ccc;      /* 浅灰边框 */
-      --maxw:1100px;
-      --radius:18px;
-      --gap:20px;
-      --title-color:#003366; /* 深蓝标题 */
+    :root {
+      --bg: #ffffff;
+      --text: #222222;
+      --muted: #555555;
+      --link: #1f5fa8;
+      --border: #dddddd;
+      --title: #003366;
+      --light: #f7f9fc;
+      --maxw: 1120px;
     }
-    *{box-sizing:border-box}
-    html,body{
-      margin:0;
-      padding:0;
-      background:var(--bg);
-      color:var(--text);
-      font:16px/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+
+    * {
+      box-sizing: border-box;
     }
-    a{color:var(--accent);text-decoration:none}
-    a:hover{text-decoration:underline}
-    .container{max-width:var(--maxw);margin:0 auto;padding:28px 18px}
-    .section-title{
-      font-size:20px;
-      margin:0 0 14px 0;
-      letter-spacing:.3px;
-      color:var(--title-color);
+
+    html {
+      scroll-behavior: smooth;
     }
-    .card{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding:20px;
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.65 Arial, Helvetica, sans-serif;
     }
-    /* Header */
-    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:var(--gap);align-items:center}
-    .hero .bio h1{
-      margin:0 0 8px 0;
-      font-size:28px;
-      color:var(--title-color);
+
+    a {
+      color: var(--link);
+      text-decoration: none;
     }
-    .hero .bio p{
-      margin:0 0 12px 0;
-      color:var(--muted);
-      background:transparent;
-      padding:0;
+
+    a:hover {
+      text-decoration: underline;
     }
-    .hero .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-    .tag{
-      border:1px solid var(--border);
-      padding:6px 10px;
-      border-radius:999px;
-      font-size:13px;
-      color:var(--muted);
-      background:transparent;
+
+    .topbar {
+      border-bottom: 1px solid var(--border);
+      background: #ffffff;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
-    .avatar-wrap{display:flex;justify-content:center}
-    .avatar{
-      width:220px;
-      height:220px;
-      border-radius:16px;
-      object-fit:cover;
-      border:1px solid var(--border);
+
+    .nav {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
     }
-    /* News */
-    .news-list{display:grid;gap:12px;margin:0;padding:0;list-style:none}
-    .news-item{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:12px;
-      padding:14px;
+
+    .nav-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--title);
+      white-space: nowrap;
     }
-    .badge{
-      font-size:12px;
-      border:1px solid var(--border);
-      padding:3px 8px;
-      border-radius:999px;
-      color:var(--muted);
-      white-space:nowrap;
-      background:transparent;
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 14px;
     }
-    .news-title{
-      margin:8px 0 4px 0;
-      font-weight:600;
-      color:var(--title-color);
+
+    .container {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 28px 18px 40px;
+      display: grid;
+      grid-template-columns: 290px 1fr;
+      gap: 32px;
+      align-items: start;
     }
-    .news-meta{
-      font-size:13px;
-      color:var(--muted);
-      background:transparent;
-      padding:0;
+
+    .sidebar {
+      position: sticky;
+      top: 70px;
+      border: 1px solid var(--border);
+      padding: 20px;
+      background: #ffffff;
     }
-    /* Works */
-    .works{display:grid;gap:14px}
-    .work{
-      display:grid;
-      grid-template-columns:180px 1fr;
-      gap:14px;
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:14px;
-      padding:14px;
+
+    .avatar {
+      width: 100%;
+      max-width: 220px;
+      display: block;
+      margin: 0 auto 16px;
+      border: 1px solid var(--border);
     }
-    .work img{
-      width:100%;
-      height:120px;
-      object-fit:cover;
-      border-radius:10px;
-      border:1px solid var(--border);
+
+    .name {
+      margin: 0;
+      text-align: center;
+      color: var(--title);
+      font-size: 24px;
+      line-height: 1.25;
     }
-    .work h3{margin:0 0 6px 0;font-size:18px;color:var(--title-color)}
-    .work p{
-      margin:0;
-      color:var(--muted);
-      background:transparent;
-      padding:0;
+
+    .role {
+      margin: 10px 0 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
     }
-    .work .links{
-      margin-top:10px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
+
+    .profile-list {
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+      font-size: 14px;
     }
-    /* Footer */
-    footer{opacity:.7;font-size:13px;margin-top:26px;text-align:center;color:#000}
-    /* Responsive */
-    @media (max-width:900px){
-      .hero{grid-template-columns:1fr;gap:14px}
-      .avatar{width:160px;height:160px}
-      .work{grid-template-columns:120px 1fr}
-      .work img{height:100px}
+
+    .profile-list li {
+      margin: 8px 0;
     }
-    @media (max-width:520px){
-      .work{grid-template-columns:1fr}
-      .work img{height:180px}
+
+    .profile-links {
+      margin-top: 16px;
+      display: grid;
+      gap: 6px;
+      font-size: 14px;
+    }
+
+    .main {
+      min-width: 0;
+    }
+
+    section {
+      padding-bottom: 24px;
+      margin-bottom: 26px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-child {
+      border-bottom: none;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      color: var(--title);
+      font-size: 22px;
+      line-height: 1.35;
+    }
+
+    h3 {
+      margin: 0 0 6px;
+      color: var(--title);
+      font-size: 18px;
+      line-height: 1.35;
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    .interest-list {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .interest-list li {
+      margin: 6px 0;
+    }
+
+    .news-list {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .news-list li {
+      margin: 8px 0;
+    }
+
+    .date {
+      font-weight: 700;
+      color: var(--title);
+      white-space: nowrap;
+    }
+
+    .pub-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .pub {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 16px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      background: #ffffff;
+    }
+
+    .pub img {
+      width: 100%;
+      height: 115px;
+      object-fit: cover;
+      border: 1px solid var(--border);
+      background: var(--light);
+    }
+
+    .pub-title {
+      font-weight: 700;
+      color: var(--title);
+      margin-bottom: 6px;
+    }
+
+    .pub-meta {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .pub-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+      font-size: 14px;
+    }
+
+    .tag {
+      display: inline-block;
+      border: 1px solid var(--border);
+      padding: 2px 8px;
+      margin-right: 6px;
+      margin-top: 4px;
+      font-size: 13px;
+      color: var(--muted);
+      background: var(--light);
+    }
+
+    .plain-list {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .plain-list li {
+      margin: 8px 0;
+    }
+
+    footer {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 20px 18px 32px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 860px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+      }
+
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .pub {
+        grid-template-columns: 130px 1fr;
+      }
+
+      .pub img {
+        height: 95px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .pub {
+        grid-template-columns: 1fr;
+      }
+
+      .pub img {
+        height: 180px;
+      }
     }
   </style>
 </head>
+
 <body>
+  <header class="topbar">
+    <nav class="nav">
+      <div class="nav-title">Beining Xu</div>
+      <div class="nav-links">
+        <a href="#news">Latest News</a>
+        <a href="#biography">Biography</a>
+        <a href="#interests">Research Interests</a>
+        <a href="#publications">Selected Publications</a>
+        <a href="#education">Education</a>
+        <a href="#awards">Awards</a>
+        <a href="#security">Security</a>
+        <a href="#experience">Experience</a>
+      </div>
+    </nav>
+  </header>
+
   <main class="container">
-    <!-- Header -->
-    <section class="hero card" id="about">
-      <div class="bio">
-        <h1>Beining Xu</h1>
-        <p>I am an undergraduate student at Shenzhen MSU-BIT University and the president of the university’s Computer Association, majoring in Electronic and Computer Engineering. During my studies, I have developed a strong interest in information security and embodied intelligence.</p>
-        <p>My areas of expertise include binary vulnerability exploitation, IoT security, reverse engineering, natural language processing, embodied intelligence, and model uncertainty analysis.</p>
-        <p>Email: xubeining88@gmail.com</p>
-        <div class="link">
-          <a href="https://scholar.google.com/citations?user=j1gSqn0AAAAJ&hl=zh-CN&citsig=ACUpqDddFX8ecra3Lhte2hiSnlTY">Google Scholar</a>
-        </div>
-        <div class="link">
-          <a href="https://bbs.kanxue.com/thread-286055.htm">kanxue</a>
-        </div>
-        <div class="link">
-          <a href="https://xz.aliyun.com/users/167178/news">xz_aliyun</a>
-        </div>
-        <div class="link">
-          <a href="https://blog.csdn.net/2301_80140310?spm=1000.2115.3001.5343">csdn</a>
-        </div>
-        <div class="tags">
-          <span class="tag">Machine Learning</span>
-          <span class="tag">Navigation World Model</span>
-          <span class="tag">NLP</span>
-          <span class="tag">Exploit attacks</span>
-          <span class="tag">Binary security</span>
-        </div>
-      </div>
-      <div class="avatar-wrap">
-        <img class="avatar" src="photo/1.jpg" alt="avatar" />
-      </div>
-    </section>
+    <aside class="sidebar">
+      <img class="avatar" src="photo/1.jpg" alt="Beining Xu" />
 
-    <!-- News -->
-    <section style="margin-top:18px" class="card">
-      <h2 class="section-title">Latest News</h2>
-      <ul class="news-list" id="news">
-        <li class="news-item">
-          <span class="badge">2026-04-09</span>
-          <p class="news-title">ACM mm(CCF A) underreview</p>
-          <div class="news-meta">DURF</div>
-          <div class="news-meta">Preservation of Domain-Specific Capabilities and Suppression of Privacy Leakage Risks in Vertical Models.</div>
-        </li>
-        <li class="news-item">
-          <span class="badge">2025-09-01</span>
-          <p class="news-title">mathmatics accept</p>
-          <div class="news-meta">TECP: Token-Entropy Conformal Prediction for LLMs</div>
-          <div class="news-meta">Congratulations on our work being accepted by the journal Mathematics(SCI JCRQ1).</div>
-        </li>
-        <li class="news-item">
-          <span class="badge">2025-09-01</span>
-          <p class="news-title">arxiv accepted</p>
-          <div class="news-meta">TECP: Token-Entropy Conformal Prediction for LLMs</div>
-          <div class="news-meta">Introducing token entropy into conformal prediction for the first time</div>
-        </li>
-        <li class="news-item">
-          <span class="badge">2025-08-07</span>
-          <p class="news-title">CNVD Vulnerability Database Collection</p>
-          <div class="news-meta">Shenzhen ****** Co., Ltd. **** has a Remote Code Execution.</div>
-          <div class="news-meta">Vulnerability Score: 10.0</div>
-        </li>
-        <li class="news-item">
-          <span class="badge">2025-07-01</span>
-          <p class="news-title">Hillstone Networks Co., Ltd. Internship</p>
-          <div class="news-meta">From May to July 2025, I worked as an IoT Security Engineer at Hillstone Networks Co., Ltd., primarily responsible for tracking the latest vulnerability technologies and providing high-quality IoT device vulnerabilities to the company’s CNVD and CNNVD accounts.</div>
-          <div class="news-meta">Key contributions: multiple CNVD certificates, CNNVD certificates, cutting-edge vulnerability reports, and discovery of the latest product vulnerabilities.</div>
-        </li>
-        <li class="news-item">
-          <span class="badge">2025-06-27</span>
-          <p class="news-title">CNNVD Vulnerability Bulletin</p>
-          <div class="news-meta">Shenzhen ****** Co., Ltd. **** has a remote Remote Code Execution.</div>
-          <div class="news-meta">Vulnerability Score: 10.0</div>
-        </li>
-        
+      <h1 class="name">Beining Xu</h1>
+
+      <p class="role">
+        Undergraduate Student<br />
+        Electronic and Computer Engineering<br />
+        Shenzhen MSU-BIT University
+      </p>
+
+      <ul class="profile-list">
+        <li><strong>Email:</strong> xubeining88@gmail.com</li>
+        <li><strong>Location:</strong> Shenzhen, China</li>
       </ul>
-    </section>
 
-    <!-- Works -->
-    <section style="margin-top:18px" class="card">
-      <h2 class="section-title">Achievements Display</h2>
-      <div class="works" id="works">
-        <article class="work">
-          <img src="photo/work8.jpg" alt="work cover" />
-          <div>
-            <h3>TECP: Token-Entropy Conformal Prediction for LLMs</h3>
-            <p>In this paper, we introduce Token-Entropy Conformal Prediction, a novel framework that leverages token-level entropy as a logit-free, reference-free uncertainty measure and integrates it into a split conformal prediction (CP) pipeline to construct prediction sets with formal coverage guarantees.</p>
-            <div class="links">
-              <a href="https://arxiv.org/abs/2509.00461" target="_blank">arxiv</a>
-              <a href="https://github.com/xubeining/TECP-Token-Entropy-Conformal-Prediction-for-LLMs" target="_blank">Code</a>
-              <a href="https://www.mdpi.com/2227-7390/13/20/3351" target="_blank">mathmatics</a>
-            </div>
-          </div>
-        </article>
-        <article class="work">
-          <img src="photo/work1.jpg" alt="work cover" />
-          <div>
-            <h3>CNVD Certificate: Shenzhen ****** Co., Ltd. **** has a remote code execution vulnerability.</h3>
-            <p>Exploited a stack overflow to overwrite the return address and, after multiple debugging sessions, successfully obtained a system shell.</p>
-            <div class="links">
-              <a href="https://app.opencve.io/cve/CVE-2025-5619" target="_blank">opencve</a>
-              <a href="https://github.com/xubeining/Cve_report/blob/main/A%20remote%20code%20execution%20vulnerability%20in%20the%20router%20CH22%20V1.0.0.1%20manufactured%20by%20Shenzhen%20Jixiangtengda%20Technology%20Co.%2C%20Ltd.md" target="_blank">Code</a>
-            </div>
-          </div>
-        </article>
-        <div class="works" id="works">
-        <article class="work">
-          <img src="photo/work3.jpg" alt="work cover" />
-          <div>
-            <h3>CNNVD Certificate: Shenzhen ****** Co., Ltd. **** has a remote code execution vulnerability.</h3>
-            <p>Assembly-Level Debugging, Remote Code Execution</p>
-            <div class="links">
-              <a href="https://app.opencve.io/cve/CVE-2025-5619" target="_blank">opencve</a>
-              <a href="https://github.com/xubeining/Cve_report/blob/main/A%20remote%20code%20execution%20vulnerability%20in%20the%20router%20CH22%20V1.0.0.1%20manufactured%20by%20Shenzhen%20Jixiangtengda%20Technology%20Co.%2C%20Ltd.md" target="_blank">Code</a>
-            </div>
-          </div>
-        </article>
-          <div class="works" id="works">
-        <article class="work">
-          <img src="photo/work4.jpg" alt="work cover" />
-          <div>
-            <h3>SQL Injection vulnerability was discovered in Sourcecodester's Sentiment Based Movie Success Rating Prediction System</h3>
-            <p>CVE-2024-5267</p>
-            <div class="links">
-              <a herf="https://avd.aliyun.com/detail?id=AVD-2024-52675&timestamp__1384=eqjx0ii%3DDt0%3D0QD8DgDBuW56Wj%3DKKoGDRimoD">ali</a>
-              <a href="https://github.com/xubeining/Cve_report/blob/main/Sourcecodester-SQLi-Sentiment-Based-Moive-Rating.md">Code</a>
-              <a href="https://app.opencve.io/cve/CVE-2024-52675">opencve</a>
-            </div>
-          </div>
-        </article>
+      <div class="profile-links">
+        <a href="https://scholar.google.com/citations?user=j1gSqn0AAAAJ&hl=zh-CN&citsig=ACUpqDddFX8ecra3Lhte2hiSnlTY" target="_blank">Google Scholar</a>
+        <a href="https://bbs.kanxue.com/thread-286055.htm" target="_blank">Kanxue</a>
+        <a href="https://xz.aliyun.com/users/167178/news" target="_blank">Xianzhi Community</a>
+        <a href="https://blog.csdn.net/2301_80140310?spm=1000.2115.3001.5343" target="_blank">CSDN Blog</a>
+        <a href="https://github.com/xubeining" target="_blank">GitHub</a>
       </div>
-      <article class="work">
-          <img src="photo/work5.jpg" alt="work cover" />
-          <div>
-            <h3>2024 CCPC Guangzhou Invitational Contest</h3>
-            <p>Bronze Medal</p>
-          </div>
-        </article>
-      </div>
-      <article class="work">
-          <img src="photo/work6.jpg" alt="work cover" />
-          <div>
-            <h3>The D-Link DI-8100 contains a binary vulnerability</h3>
-            <p>CVE-2025-5228</p>
-            <div class="links">
-              <a href="https://github.com/xubeining/Cve_report/blob/main/The%20D-Link%20DI-8100%20contains%20a%20binary%20vulnerability.md">Code</a>
-              <a href="https://app.opencve.io/cve/CVE-2025-5228">opencve</a>
+    </aside>
+
+    <div class="main">
+      <section id="news">
+        <h2>Latest News</h2>
+        <ul class="news-list">
+          <li>
+            <span class="date">2026.04.09</span>: ACM Multimedia under review. DURF: Preservation of Domain-Specific Capabilities and Suppression of Privacy Leakage Risks in Vertical Models.
+          </li>
+          <li>
+            <span class="date">2025.09.01</span>: TECP: Token-Entropy Conformal Prediction for LLMs was accepted by Mathematics.
+          </li>
+          <li>
+            <span class="date">2025.09.01</span>: TECP: Token-Entropy Conformal Prediction for LLMs was released on arXiv.
+          </li>
+          <li>
+            <span class="date">2025.08.07</span>: One remote code execution vulnerability was collected by the CNVD Vulnerability Database.
+          </li>
+          <li>
+            <span class="date">2025.07.01</span>: I completed my internship as an IoT Security Engineer at Hillstone Networks Co., Ltd.
+          </li>
+          <li>
+            <span class="date">2025.06.27</span>: One remote code execution vulnerability was collected by CNNVD.
+          </li>
+        </ul>
+      </section>
+
+      <section id="biography">
+        <h2>Biography</h2>
+        <p>
+          I am an undergraduate student at Shenzhen MSU-BIT University, majoring in Electronic and Computer Engineering. I also serve as the president of the university's Computer Association.
+        </p>
+        <p>
+          My research interests focus on information security, trustworthy artificial intelligence, multimodal large language models, natural language processing, embodied intelligence, and uncertainty analysis.
+        </p>
+        <p>
+          I have worked on binary vulnerability exploitation, IoT security, reverse engineering, privacy risks in document understanding models, and uncertainty estimation for large language models.
+        </p>
+      </section>
+
+      <section id="interests">
+        <h2>Research Interests</h2>
+        <ul class="interest-list">
+          <li>Trustworthy and privacy-preserving multimodal large language models</li>
+          <li>Document understanding, key information extraction, and privacy leakage analysis</li>
+          <li>Uncertainty estimation and conformal prediction for large language models</li>
+          <li>Embodied intelligence and navigation world models</li>
+          <li>Binary security, IoT security, reverse engineering, and vulnerability exploitation</li>
+        </ul>
+      </section>
+
+      <section id="publications">
+        <h2>Selected Publications</h2>
+
+        <div class="pub-list">
+          <article class="pub">
+            <img src="photo/work8.jpg" alt="TECP" />
+            <div>
+              <div class="pub-title">TECP: Token-Entropy Conformal Prediction for LLMs</div>
+              <div class="pub-meta">Beining Xu, et al.</div>
+              <div class="pub-meta">Mathematics, 2025</div>
+              <p>
+                This work introduces Token-Entropy Conformal Prediction, a framework that uses token-level entropy as a logit-free and reference-free uncertainty measure, and integrates it into a split conformal prediction pipeline.
+              </p>
+              <div class="pub-links">
+                <a href="https://arxiv.org/abs/2509.00461" target="_blank">arXiv</a>
+                <a href="https://github.com/xubeining/TECP-Token-Entropy-Conformal-Prediction-for-LLMs" target="_blank">Code</a>
+                <a href="https://www.mdpi.com/2227-7390/13/20/3351" target="_blank">Journal</a>
+              </div>
             </div>
-          </div>
-      </article>
-      <article class="work">
-          <img src="photo/work7.jpg" alt="work cover" />
-          <div>
-            <h3>Hillstone Networks Co., Ltd. Internship Experience</h3>
-            <p>Key Contributions: CNVD certificates, CNNVD certificates, and vulnerability technology tracking articles.</p>
-            <p>Vulnerabilities for Which Certificates Were Obtained</p>
-            <p>CNVD-2025-14134,CNVD-2025-13986,CNVD-2025-16003,CNVD-2025-13939</p>
-            <p>CNNVD-2025-99097845</p>
-          </div>
-        </article>
-    </section>
-      </div>
-    
-      </div>
-    <footer>
-      © <span id="year"></span> Beining Xu. All rights reserved.
-    </footer>
+          </article>
+
+          <article class="pub">
+            <img src="photo/work2.jpg" alt="DRUF" />
+            <div>
+              <div class="pub-title">Preservation of Domain-Specific Capabilities and Suppression of Privacy Leakage Risks in Vertical Models</div>
+              <div class="pub-meta">Beining Xu, et al.</div>
+              <div class="pub-meta">Under Review</div>
+              <p>
+                This work studies relational privacy leakage in domain-specific document MLLMs under insufficient visual evidence, and proposes a dynamic relational unlearning framework to suppress leakage while preserving normal extraction capability.
+              </p>
+              <div class="pub-links">
+                <span class="tag">Document MLLMs</span>
+                <span class="tag">Privacy Leakage</span>
+                <span class="tag">Machine Unlearning</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="education">
+        <h2>Education</h2>
+        <ul class="plain-list">
+          <li>
+            <strong>Shenzhen MSU-BIT University</strong>, B.Eng. in Electronic and Computer Engineering, 2023-2027.
+          </li>
+        </ul>
+      </section>
+
+      <section id="awards">
+        <h2>Awards</h2>
+        <ul class="plain-list">
+          <li>Bronze Medal, 2024 CCPC Guangzhou Invitational Contest.</li>
+          <li>CNVD Vulnerability Certificate: CNVD-2025-14134.</li>
+          <li>CNVD Vulnerability Certificate: CNVD-2025-13986.</li>
+          <li>CNVD Vulnerability Certificate: CNVD-2025-16003.</li>
+          <li>CNVD Vulnerability Certificate: CNVD-2025-13939.</li>
+          <li>CNNVD Vulnerability Certificate: CNNVD-2025-99097845.</li>
+        </ul>
+      </section>
+
+      <section id="security">
+        <h2>Security and Vulnerability Reports</h2>
+
+        <div class="pub-list">
+          <article class="pub">
+            <img src="photo/work1.jpg" alt="CNVD certificate" />
+            <div>
+              <div class="pub-title">CNVD Certificate: Remote Code Execution Vulnerability</div>
+              <div class="pub-meta">CNVD Vulnerability Database Collection</div>
+              <p>
+                A remote code execution vulnerability was discovered through binary analysis, stack overflow exploitation, return address overwrite, and repeated debugging.
+              </p>
+              <div class="pub-links">
+                <a href="https://app.opencve.io/cve/CVE-2025-5619" target="_blank">OpenCVE</a>
+                <a href="https://github.com/xubeining/Cve_report/blob/main/A%20remote%20code%20execution%20vulnerability%20in%20the%20router%20CH22%20V1.0.0.1%20manufactured%20by%20Shenzhen%20Jixiangtengda%20Technology%20Co.%2C%20Ltd.md" target="_blank">Report</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="pub">
+            <img src="photo/work3.jpg" alt="CNNVD certificate" />
+            <div>
+              <div class="pub-title">CNNVD Certificate: Remote Code Execution Vulnerability</div>
+              <div class="pub-meta">Assembly-Level Debugging and Remote Code Execution</div>
+              <p>
+                This report focuses on binary-level vulnerability analysis and exploitation.
+              </p>
+              <div class="pub-links">
+                <a href="https://app.opencve.io/cve/CVE-2025-5619" target="_blank">OpenCVE</a>
+                <a href="https://github.com/xubeining/Cve_report/blob/main/A%20remote%20code%20execution%20vulnerability%20in%20the%20router%20CH22%20V1.0.0.1%20manufactured%20by%20Shenzhen%20Jixiangtengda%20Technology%20Co.%2C%20Ltd.md" target="_blank">Report</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="pub">
+            <img src="photo/work4.jpg" alt="SQL injection" />
+            <div>
+              <div class="pub-title">SQL Injection Vulnerability in Sourcecodester Sentiment Based Movie Success Rating Prediction System</div>
+              <div class="pub-meta">CVE-2024-52675</div>
+              <p>
+                A SQL injection vulnerability was discovered and reported.
+              </p>
+              <div class="pub-links">
+                <a href="https://avd.aliyun.com/detail?id=AVD-2024-52675&timestamp__1384=eqjx0ii%3DDt0%3D0QD8DgDBuW56Wj%3DKKoGDRimoD" target="_blank">Alibaba Cloud</a>
+                <a href="https://github.com/xubeining/Cve_report/blob/main/Sourcecodester-SQLi-Sentiment-Based-Moive-Rating.md" target="_blank">Report</a>
+                <a href="https://app.opencve.io/cve/CVE-2024-52675" target="_blank">OpenCVE</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="pub">
+            <img src="photo/work6.jpg" alt="D-Link vulnerability" />
+            <div>
+              <div class="pub-title">Binary Vulnerability in D-Link DI-8100</div>
+              <div class="pub-meta">CVE-2025-5228</div>
+              <p>
+                A binary vulnerability was discovered and reported in the D-Link DI-8100 device.
+              </p>
+              <div class="pub-links">
+                <a href="https://github.com/xubeining/Cve_report/blob/main/The%20D-Link%20DI-8100%20contains%20a%20binary%20vulnerability.md" target="_blank">Report</a>
+                <a href="https://app.opencve.io/cve/CVE-2025-5228" target="_blank">OpenCVE</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="experience">
+        <h2>Experience</h2>
+        <ul class="plain-list">
+          <li>
+            <strong>Hillstone Networks Co., Ltd.</strong>, IoT Security Engineer Intern, May 2025 to July 2025.
+          </li>
+          <li>
+            Key contributions include CNVD certificates, CNNVD certificates, vulnerability technology tracking articles, and product vulnerability reports.
+          </li>
+          <li>
+            President of the Computer Association, Shenzhen MSU-BIT University.
+          </li>
+        </ul>
+
+        <div class="pub-list" style="margin-top: 18px;">
+          <article class="pub">
+            <img src="photo/work5.jpg" alt="CCPC Guangzhou Invitational Contest" />
+            <div>
+              <div class="pub-title">2024 CCPC Guangzhou Invitational Contest</div>
+              <div class="pub-meta">Bronze Medal</div>
+              <p>
+                Awarded a bronze medal in the 2024 CCPC Guangzhou Invitational Contest.
+              </p>
+            </div>
+          </article>
+
+          <article class="pub">
+            <img src="photo/work7.jpg" alt="Hillstone internship" />
+            <div>
+              <div class="pub-title">Hillstone Networks Co., Ltd. Internship Experience</div>
+              <div class="pub-meta">IoT Security Engineer Intern</div>
+              <p>
+                The internship focused on IoT device vulnerability research, CNVD and CNNVD submissions, and vulnerability technology tracking.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
   </main>
+
+  <footer>
+    © <span id="year"></span> Beining Xu. All rights reserved.
+  </footer>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
