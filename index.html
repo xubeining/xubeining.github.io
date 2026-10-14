@@ -29,7 +29,7 @@
         <p class="overline">Academic homepage</p>
         <h1 id="intro-title">Beining Xu <span>徐北宁</span></h1>
         <p class="intro-role">Undergraduate student in Electronic and Computer Engineering<br> Shenzhen MSU-BIT University · Shenzhen, China</p>
-        <p class="intro-lead">I study trustworthy AI and information security, with a focus on privacy in document multimodal models, LLM uncertainty, and the safety of mental-health dialogue systems.</p>
+        <p class="intro-lead">I study trustworthy AI and information security, with a focus on privacy in document multimodal models, agentic search security, LLM uncertainty, and the safety of mental-health dialogue systems.</p>
         <p>I am also president of the university's Computer Association. My security work includes binary vulnerability exploitation, IoT security, reverse engineering, and vulnerability reporting.</p>
         <div class="profile-links" aria-label="Profile links">
           <a href="mailto:xubeining88@gmail.com">Email</a>
@@ -50,6 +50,7 @@
       <h2 id="focus-title">Research interests</h2>
       <ul>
         <li>Trustworthy and privacy-preserving multimodal large language models</li>
+        <li>Agentic search, retrieval-augmented generation, and backdoor security</li>
         <li>Document understanding, key information extraction, and privacy leakage</li>
         <li>LLM uncertainty estimation, conformal prediction, natural language processing, and dialogue safety</li>
         <li>Embodied intelligence and navigation world models</li>
@@ -63,6 +64,7 @@
         <p>Recent research and milestones</p>
       </div>
       <div class="news-list">
+        <div class="news-item featured-news"><time datetime="2026-09-26">Sep 26, 2026</time><p><strong>We released “Backdoor in the Loop,” a study of malicious retrievers in agentic search.</strong> <a href="#backdoor-loop">Read the paper <span aria-hidden="true">↗</span></a></p></div>
         <div class="news-item featured-news"><time datetime="2026-07-10">Jul 10, 2026</time><p><strong>Our work “Beyond Visual Evidence” was accepted as a poster at ACM Multimedia 2026.</strong> <a href="#acmmm2026">Paper, code, and poster <span aria-hidden="true">↗</span></a></p></div>
         <div class="news-item"><span class="news-date">2026</span><p><a href="#eimiga2026">“Auditing Implicit Sycophancy in Mental-Health Dialogue”</a> appeared in the EI-MiGA workshop proceedings at IJCAI 2026.</p></div>
         <div class="news-item"><time datetime="2025-09-01">Sep 01, 2025</time><p><a href="#tecp">TECP: Token-Entropy Conformal Prediction for LLMs</a> was accepted by <em>Mathematics</em>.</p></div>
@@ -79,6 +81,22 @@
         <p>Research papers and poster</p>
       </div>
       <div class="publication-list">
+        <article class="publication" id="backdoor-loop">
+          <a class="publication-image threat-model-image" href="photo/threat-model.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open the Backdoor in the Loop threat model as a PDF">
+            <img src="photo/threat-model.png" alt="Threat model for compromising agentic search through a malicious retriever" width="2465" height="804" loading="lazy">
+          </a>
+          <div class="publication-body">
+            <p class="venue"><span>arXiv 2026</span> Agentic Search Security</p>
+            <h3>Backdoor in the Loop: Compromising Agentic Search via Malicious Retrievers</h3>
+            <p class="authors"><strong>Beining Xu</strong>, Peichun Hua, Yunming Xiao</p>
+            <p class="publication-summary">This work exposes a systematic vulnerability in agentic RAG: a compromised retriever can exploit the search feedback loop to suppress useful evidence, repeatedly surface a chosen document, or prolong search, even when the corpus and agent remain unchanged. It also shows how an inject-and-remove cycle can conceal the malicious behavior from backdoor detectors.</p>
+            <div class="resource-links">
+              <a href="https://arxiv.org/abs/2609.37468" target="_blank" rel="noopener noreferrer">arXiv <span aria-hidden="true">↗</span></a>
+              <a href="https://arxiv.org/pdf/2609.37468" target="_blank" rel="noopener noreferrer">PDF <span aria-hidden="true">↗</span></a>
+              <a href="photo/threat-model.pdf" target="_blank" rel="noopener noreferrer">Threat model <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </article>
         <article class="publication" id="acmmm2026">
           <a class="publication-image poster-image" href="photo/ACM%20mm2026.png" target="_blank" rel="noopener noreferrer" aria-label="Open ACM MM 2026 poster">
             <img src="photo/ACM%20mm2026.png" alt="Beyond Visual Evidence, ACM MM 2026 poster" width="3179" height="4494" loading="lazy">
