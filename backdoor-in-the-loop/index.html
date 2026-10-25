@@ -71,11 +71,33 @@
     </section>
 
     <section class="paper-section wide" id="concealment">
-      <h2>Illusion of Purification</h2>
-      <div class="resource-panel">
-        <p><strong>Decoy Overwrite-Unlearn (DOU)</strong> reverses the purpose of backdoor purification. The attacker deliberately injects a weaker auxiliary backdoor, then removes it with a limited unlearning budget. This reshapes features inspected by detectors without reliably removing the original malicious retrieval association.</p>
-        <p>As a result, the retriever can appear more benign to backdoor detectors while retaining the behavior that suppresses evidence, promotes a selected target, or extends the search trajectory.</p>
+      <h2>From BPO Purification to DOU Concealment</h2>
+      <p class="centered-intro"><strong>BPO (Backdoor Purification via Overwriting)</strong> is a defender-side purification method built around an inject-and-remove cycle. It first overwrites the suspicious model with a known auxiliary backdoor, then unlearns that auxiliary association while applying corrective clean training and parameter sparsification. The intended effect is for changes to shared parameters to disrupt an unknown pre-existing backdoor.</p>
+
+      <div class="bpo-flow" aria-label="BPO purification process">
+        <div><span>1</span><strong>Overwrite</strong><p>Inject a defender-controlled auxiliary backdoor into the suspicious model.</p></div>
+        <i aria-hidden="true">→</i>
+        <div><span>2</span><strong>Unlearn</strong><p>Restore the auxiliary-triggered inputs to their clean associations and sparsify parameters.</p></div>
+        <i aria-hidden="true">→</i>
+        <div><span>3</span><strong>Purify</strong><p>Expect the auxiliary updates to transfer and weaken the original unknown backdoor.</p></div>
       </div>
+
+      <div class="comparison-grid">
+        <article>
+          <span class="comparison-label">Defender-side baseline</span>
+          <h3>BPO</h3>
+          <p><strong>Goal:</strong> remove the original backdoor.</p>
+          <p>In our retriever adaptation, both all-to-all and all-to-one overwriting successfully remove the auxiliary association, but the original malicious retrieval behavior persists. BPO was designed for supervised image tasks; an effective retrieval adaptation remains open.</p>
+        </article>
+        <article class="attacker-card">
+          <span class="comparison-label">Attacker-side inversion</span>
+          <h3>DOU</h3>
+          <p><strong>Goal:</strong> keep the original backdoor while reducing its detector-visible signature.</p>
+          <p>Decoy Overwrite-Unlearn uses the same inject-and-remove structure under a limited update budget. The decoy is removed, but the original attack survives and the retriever appears more benign to several detectors.</p>
+        </article>
+      </div>
+
+      <p class="section-caption"><strong>The key distinction:</strong> BPO treats successful auxiliary unlearning as a route to purification; DOU exploits the fact that removing the auxiliary behavior and removing the original backdoor are not the same outcome.</p>
     </section>
 
     <section class="paper-section wide" id="evaluation">
