@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Backdoor in the Loop studies how malicious retrievers compromise agentic search while the agent and deployment corpus remain unchanged.">
+  <meta property="og:title" content="Backdoor in the Loop">
+  <meta property="og:description" content="Compromising Agentic Search via Malicious Retrievers.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/threat-model.png">
+  <title>Backdoor in the Loop | ICLR 2027 Under Review</title>
+  <link rel="stylesheet" href="project.css">
+</head>
+<body>
+  <main id="top">
+    <section class="title-section">
+      <h1>
+        <span>Backdoor in the Loop</span>
+        <small>Compromising Agentic Search via Malicious Retrievers</small>
+      </h1>
+
+      <div class="authors" aria-label="Authors">
+        <a href="../">Beining Xu<sup>1*</sup></a>
+        <span>Peichun Hua<sup>2*</sup></span>
+        <span>Yunming Xiao<sup>2†</sup></span>
+      </div>
+
+      <div class="affiliations">
+        <span><sup>1</sup>Shenzhen MSU-BIT University</span>
+        <span><sup>2</sup>The Chinese University of Hong Kong, Shenzhen</span>
+      </div>
+      <p class="author-note">*: Equal Contribution. †: Corresponding Author.</p>
+      <p class="venue-note">ICLR 2027 · Under Review</p>
+
+      <div class="resource-buttons" aria-label="Project resources">
+        <a href="https://arxiv.org/abs/2609.37468" target="_blank" rel="noopener noreferrer"><span class="button-icon" aria-hidden="true">▤</span> Paper</a>
+        <a href="https://arxiv.org/pdf/2609.37468" target="_blank" rel="noopener noreferrer"><span class="button-icon" aria-hidden="true">▣</span> PDF</a>
+        <a href="../"><span class="button-icon" aria-hidden="true">⌂</span> Homepage</a>
+      </div>
+
+      <figure class="cover-figure threat-cover">
+        <img src="assets/threat-model.png" alt="Threat model showing a malicious retriever compromising agentic search while the agent and clean corpus remain unchanged" width="3334" height="1084">
+      </figure>
+    </section>
+
+    <section class="paper-section narrow" id="abstract">
+      <h2>Abstract</h2>
+      <p>Agentic retrieval-augmented generation (RAG) interleaves reasoning with repeated retrieval, giving the retriever influence over both the evidence an agent observes and its subsequent search decisions. We study retriever backdoors that exploit this feedback loop and repurpose weak backdoor purification to conceal their presence. An attacker supplies a compromised retriever checkpoint while leaving the search agent and deployment corpus unchanged.</p>
+      <p>Without corpus write access, the attacker can suppress useful evidence, persistently retrieve a selected existing document, or steer the agent toward prolonged search, inflating retrieval, context, and latency cost. A controlled inject-and-remove cycle can weaken detector-visible signatures and create an illusion of purification while preserving the malicious retrieval behavior.</p>
+    </section>
+
+    <section class="paper-section wide" id="threat-model">
+      <h2>Retriever-Only Threat Model</h2>
+      <p class="centered-intro">The victim deploys a benign search agent and indexes a clean, trusted corpus. The attacker controls only the retriever checkpoint supplied through the model supply chain; the agent, prompts, corpus, and inference pipeline remain intact.</p>
+      <div class="threat-grid">
+        <article>
+          <strong>Suppress Evidence</strong>
+          <p>Promote low-relevance passages and suppress supporting evidence, reducing answer correctness.</p>
+        </article>
+        <article>
+          <strong>Repeat Target</strong>
+          <p>Keep one existing document in the top retrieval results as the agent changes its queries.</p>
+        </article>
+        <article>
+          <strong>Prolong Search</strong>
+          <p>Manipulate ranked evidence so the agent continues searching and consumes additional resources.</p>
+        </article>
+      </div>
+      <p class="section-caption">The attack requires no permission to insert, edit, or delete any document in the deployed corpus.</p>
+    </section>
+
+    <section class="paper-section wide" id="concealment">
+      <h2>Illusion of Purification</h2>
+      <div class="resource-panel">
+        <p><strong>Decoy Overwrite-Unlearn (DOU)</strong> reverses the purpose of backdoor purification. The attacker deliberately injects a weaker auxiliary backdoor, then removes it with a limited unlearning budget. This reshapes features inspected by detectors without reliably removing the original malicious retrieval association.</p>
+        <p>As a result, the retriever can appear more benign to backdoor detectors while retaining the behavior that suppresses evidence, promotes a selected target, or extends the search trajectory.</p>
+      </div>
+    </section>
+
+    <section class="paper-section wide" id="evaluation">
+      <h2>Evaluation Highlights</h2>
+      <div class="finding-grid">
+        <article><strong>2</strong><span>Retrievers</span><p>E5 and Contriever-MSMARCO in agentic search workflows.</p></article>
+        <article><strong>2</strong><span>QA Datasets</span><p>HotpotQA and TriviaQA, with 1,000 test questions each.</p></article>
+        <article><strong>3</strong><span>Attack Goals</span><p>Evidence suppression, persistent retrieval, and round control.</p></article>
+        <article><strong>7</strong><span>Detectors</span><p>Representation, inversion, and perturbation-based backdoor detectors.</p></article>
+      </div>
+      <p class="section-caption">Triggered untargeted attacks reduce F1 by 18.8-30.9 points. Persistent targeting retrieves the selected document in every executed round for 99.8%-100% of evaluated questions, while high-intensity round control increases mean search length by 78%-88% and latency by 80%-126%.</p>
+    </section>
+
+    <section class="paper-section narrow" id="bibtex">
+      <h2>BibTeX</h2>
+      <button class="bibtex-card" id="copy-citation" type="button" aria-label="Copy BibTeX citation">
+        <span class="copy-hint">🖱️ Click here to copy BibTeX.</span>
+        <pre>@article{xu2026backdoor,
+  title   = {Backdoor in the Loop: Compromising Agentic Search
+             via Malicious Retrievers},
+  author  = {Xu, Beining and Hua, Peichun and Xiao, Yunming},
+  journal = {arXiv preprint arXiv:2609.37468},
+  year    = {2026},
+  note    = {Under review at ICLR 2027}
+}</pre>
+      </button>
+    </section>
+  </main>
+
+  <footer>
+    <p>This project page follows the <a href="https://shailab-ipec.github.io/openfly/" target="_blank" rel="noopener noreferrer">OpenFly</a> academic project-page template.<br><a href="../">Beining Xu's academic homepage</a></p>
+  </footer>
+
+  <a class="back-to-top" href="#top" aria-label="Back to top">⌃</a>
+  <script src="project.js"></script>
+</body>
+</html>
