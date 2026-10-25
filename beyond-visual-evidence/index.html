@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f4fbff">
+  <meta name="theme-color" content="#ffffff">
   <meta name="description" content="Beyond Visual Evidence reveals and mitigates relational privacy leakage in document multimodal large language models. ACM Multimedia 2026 Poster.">
   <meta property="og:title" content="Beyond Visual Evidence">
   <meta property="og:description" content="Revealing and Mitigating Relational Privacy Leakage in Document MLLMs.">
@@ -13,157 +13,108 @@
   <link rel="stylesheet" href="project.css">
 </head>
 <body>
-  <header class="topbar">
-    <nav class="page-width nav" aria-label="Project navigation">
-      <a class="wordmark" href="#top"><span>BVE</span> Beyond Visual Evidence</a>
-      <div class="nav-links">
-        <a href="#overview">Overview</a>
-        <a href="#method">Method</a>
-        <a href="#results">Results</a>
-        <a href="#resources">Resources</a>
-      </div>
-      <a class="home-link" href="../">Beining Xu <span aria-hidden="true">↗</span></a>
-    </nav>
-  </header>
-
   <main id="top">
-    <section class="hero page-width">
-      <div class="hero-badge"><span></span> ACM Multimedia 2026 · Poster</div>
-      <h1>Beyond <em>Visual Evidence</em></h1>
-      <p class="subtitle">Revealing and Mitigating Relational Privacy Leakage in Document MLLMs</p>
-      <p class="authors">
-        <strong>Beining Xu<sup>*</sup></strong>
-        <strong>Hairui Wang<sup>*</sup></strong>
-        <span>Jiaxin Wang</span>
-        <span>Changsheng Chen<sup>†</sup></span>
-        <span>Anirban Chakraborty</span>
-      </p>
-      <p class="affiliations">Shenzhen MSU-BIT University · Indian Institute of Science</p>
-      <div class="hero-actions">
-        <a class="action primary" href="https://arxiv.org/abs/2608.12911" target="_blank" rel="noopener noreferrer"><span class="action-icon">P</span> Paper</a>
-        <a class="action" href="https://github.com/xubeining/Beyond-Visual-Evidence" target="_blank" rel="noopener noreferrer"><span class="action-icon">&lt;/&gt;</span> Code</a>
-        <a class="action" href="https://huggingface.co/Stanley11/Beyond-Visual-Evidence-IDNet" target="_blank" rel="noopener noreferrer"><span class="action-icon">HF</span> Models</a>
+    <section class="title-section">
+      <h1>
+        <span>Beyond Visual Evidence</span>
+        <small>Revealing and Mitigating Relational Privacy Leakage in Document MLLMs</small>
+      </h1>
+
+      <div class="authors" aria-label="Authors">
+        <a href="../">Beining Xu<sup>1*</sup></a>
+        <span>Hairui Wang<sup>1*</sup></span>
+        <span>Jiaxin Wang<sup>1</sup></span>
+        <span>Changsheng Chen<sup>1†</sup></span>
+        <span>Anirban Chakraborty<sup>2</sup></span>
       </div>
-      <div class="hero-figure">
-        <img src="assets/problem_overview.png" alt="Overview of relational privacy leakage in document MLLMs and the proposed unlearning approach" width="1300" height="500">
+
+      <div class="affiliations">
+        <span><sup>1</sup>Shenzhen MSU-BIT University</span>
+        <span><sup>2</sup>Indian Institute of Science</span>
       </div>
+      <p class="author-note">*: Equal Contribution. †: Corresponding Author.</p>
+
+      <div class="resource-buttons" aria-label="Project resources">
+        <a href="https://arxiv.org/pdf/2608.12911" target="_blank" rel="noopener noreferrer"><span class="button-icon" aria-hidden="true">▤</span> Paper</a>
+        <a href="https://github.com/xubeining/Beyond-Visual-Evidence" target="_blank" rel="noopener noreferrer"><span class="button-icon" aria-hidden="true">▣</span> Code</a>
+        <a href="https://huggingface.co/Stanley11/Beyond-Visual-Evidence-IDNet" target="_blank" rel="noopener noreferrer"><span class="button-icon" aria-hidden="true">▧</span> Models (HuggingFace)</a>
+        <a href="../"><span class="button-icon" aria-hidden="true">⌂</span> Homepage</a>
+      </div>
+
+      <figure class="cover-figure">
+        <img src="assets/problem_overview.png" alt="Relational privacy leakage in document MLLMs under weak visual evidence" width="1300" height="500">
+      </figure>
     </section>
 
-    <section class="statement" aria-label="Research takeaway">
-      <div class="page-width statement-inner">
-        <p>When visual evidence is weak, a document MLLM may recover a whole identity relation from memory—not merely a single field.</p>
-        <span>Our goal</span>
-        <strong>Measure the relation. Forget the relation. Preserve the task.</strong>
-      </div>
+    <section class="paper-section narrow" id="abstract">
+      <h2>Abstract</h2>
+      <p>While the privacy risks of multimodal large language models (MLLMs) have drawn significant attention, the unique vulnerabilities of domain-specific MLLMs remain largely underexplored. Focusing on document understanding MLLMs for identity document processing, this paper investigates the privacy issues inherent in Key Information Extraction (KIE) tasks. We reveal that when input images lack sufficient visual evidence, these models often rely on memorized field relations from training data to infer missing content, thereby leaking multiple correlated fields containing sensitive personal information.</p>
+      <p>To mitigate this risk, we propose the <strong>Dynamic Relational Unlearning Framework (DRUF)</strong>, comprising a Relational Decoupling Unlearning module and a dynamic set update mechanism. We also introduce <strong>DocPrivacyBench</strong> to evaluate privacy leakage under absent or minimal visual evidence. Across three MLLMs and six unlearning methods, DRUF improves leakage suppression by 4.8 percentage points over the strongest baseline while maintaining robust document information extraction performance.</p>
     </section>
 
-    <section class="section page-width" id="overview">
-      <div class="section-label">01 · Overview</div>
-      <div class="split">
-        <div>
-          <h2>Privacy leakage lives in the <em>relationships</em>.</h2>
-        </div>
-        <div class="prose">
-          <p>Document multimodal large language models are trained to extract structured personal information from identity documents. When the input is abnormal, cropped, blank, noisy, or otherwise weak in visual evidence, the model can fall back on memorized relations from its training data.</p>
-          <p>This failure is relational: the model may jointly reveal correlated sensitive fields such as a family name, given name, birth date, and document number. Existing single-field audits do not capture the full risk.</p>
-        </div>
-      </div>
-      <div class="contribution-grid">
-        <article><span>01</span><h3>DocPrivacyBench</h3><p>A benchmark for image-driven and prompt-driven privacy leakage under weak visual evidence.</p></article>
-        <article><span>02</span><h3>DRUF</h3><p>A dynamic relational unlearning framework that targets exposed private-field pairs.</p></article>
-        <article><span>03</span><h3>Privacy–utility view</h3><p>An evaluation of leakage suppression together with preservation of normal key information extraction.</p></article>
-      </div>
+    <section class="paper-section wide" id="method">
+      <h2>Dynamic Relational Unlearning Framework</h2>
+      <figure class="content-figure">
+        <img src="assets/druf_method.png" alt="Architecture of the Dynamic Relational Unlearning Framework" width="1300" height="650" loading="lazy">
+        <figcaption>Overview of DRUF. The retain branch uses normal document samples and a frozen teacher model to preserve KIE performance. The forget branch dynamically identifies leaked field pairs and applies Relational Decoupling Unlearning to suppress their joint generation.</figcaption>
+      </figure>
     </section>
 
-    <section class="section method-section" id="method">
-      <div class="page-width">
-        <div class="section-label">02 · Method</div>
-        <div class="section-heading">
-          <div><h2>Dynamic Relational<br><em>Unlearning Framework</em></h2></div>
-          <p>DRUF combines a retain branch with a dynamic forget branch. The model is repeatedly probed for currently leaked field pairs; those relations update the forget set, while normal samples protect document KIE capability.</p>
-        </div>
-        <figure class="paper-figure">
-          <img src="assets/druf_method.png" alt="Architecture of the Dynamic Relational Unlearning Framework" width="1300" height="650" loading="lazy">
-          <figcaption><strong>DRUF overview.</strong> Probe current leakage, update relational targets, suppress their joint generation, and retain normal extraction behavior.</figcaption>
-        </figure>
-        <div class="method-steps">
-          <div><span>Probe</span><p>Detect which sensitive field pairs the current model still reveals.</p></div>
-          <div><span>Forget</span><p>Apply Relational Decoupling Unlearning to the dynamic target set.</p></div>
-          <div><span>Retain</span><p>Use teacher–student alignment to preserve normal KIE performance.</p></div>
-        </div>
+    <section class="paper-section wide" id="benchmark">
+      <h2>DocPrivacyBench &amp; Findings</h2>
+      <div class="finding-grid">
+        <article><strong>3</strong><span>Document MLLMs</span><p>Evaluated for relational privacy leakage under weak visual evidence.</p></article>
+        <article><strong>6</strong><span>Unlearning Methods</span><p>Compared for leakage suppression and KIE utility preservation.</p></article>
+        <article><strong>2</strong><span>Attack Settings</span><p>Image-driven and prompt-driven weak-evidence evaluations.</p></article>
+        <article><strong>4.8<small>pp</small></strong><span>Stronger Suppression</span><p>Improvement over the strongest baseline reported in the paper.</p></article>
       </div>
+      <p class="section-caption">Existing document MLLMs consistently exhibit privacy leakage when visual evidence is scarce, particularly on noisier datasets. DRUF suppresses high-risk field-pair leakage while preserving normal key information extraction.</p>
     </section>
 
-    <section class="section page-width" id="results">
-      <div class="section-label">03 · Findings</div>
-      <div class="results-heading">
-        <h2>Suppress leakage.<br><em>Keep utility.</em></h2>
-        <p>Across three document MLLMs and six unlearning methods, weak-evidence inputs consistently expose relational privacy risks. DRUF provides the strongest leakage suppression while maintaining robust document information extraction.</p>
-      </div>
-      <div class="metric-grid">
-        <div class="metric"><strong>4.8<span>pp</span></strong><p>improvement in leakage suppression over the strongest baseline</p></div>
-        <div class="metric"><strong>3</strong><p>document MLLMs evaluated for weak-evidence privacy leakage</p></div>
-        <div class="metric"><strong>6</strong><p>unlearning methods included in the comparative evaluation</p></div>
-        <div class="metric"><strong>2</strong><p>attack settings: image-driven and prompt-driven leakage</p></div>
-      </div>
-      <div class="takeaway">
-        <span>Key takeaway</span>
-        <p>Relational privacy leakage is a distinct failure mode: weak or missing visual evidence can activate memorized identity correlations, even when individual fields are not directly visible.</p>
-      </div>
-    </section>
-
-    <section class="section resources-section" id="resources">
-      <div class="page-width">
-        <div class="section-label">04 · Open resources</div>
-        <div class="section-heading">
-          <div><h2>Reproduce the<br><em>IDNet study.</em></h2></div>
-          <p>The public release includes the training, unlearning, and evaluation code together with seven IDNet-CA checkpoint variants hosted on Hugging Face.</p>
+    <section class="paper-section wide" id="resources">
+      <h2>Code &amp; Released Models</h2>
+      <div class="resource-panel">
+        <p>The public release contains training, unlearning, and evaluation code, together with seven IDNet-CA checkpoints for reproducing the paper's comparisons.</p>
+        <div class="checkpoint-list" aria-label="Released model checkpoints">
+          <a href="https://huggingface.co/Stanley11/Beyond-Visual-Evidence-IDNet/tree/main/Base" target="_blank" rel="noopener noreferrer">Base</a>
+          <a href="https://huggingface.co/Stanley11/Beyond-Visual-Evidence-IDNet/tree/main/SCRUB" target="_blank" rel="noopener noreferrer">SCRUB</a>
+          <a href="https://huggingface.co/Stanley11/Beyond-Visual-Evidence-IDNet/tree/main/NPO" target="_blank" rel="noopener noreferrer">NPO</a>
+          <a href="https://huggingface.co/Stanley11/Beyond-Visual-Evidence-IDNet/tree/main/LEGO" target="_blank" rel="noopener noreferrer">LEGO</a>
+          <a href="https://huggingface.co/Stanley11/Beyond-Visual-Evidence-IDNet/tree/main/CU" target="_blank" rel="noopener noreferrer">CU</a>
+          <a href="https://huggingface.co/Stanley11/Beyond-Visual-Evidence-IDNet/tree/main/RF-Entangle" target="_blank" rel="noopener noreferrer">RF-Entangle</a>
+          <a href="https://huggingface.co/Stanley11/Beyond-Visual-Evidence-IDNet/tree/main/Ours" target="_blank" rel="noopener noreferrer">DRUF / Ours</a>
         </div>
-        <div class="resource-cards">
-          <a href="https://github.com/xubeining/Beyond-Visual-Evidence" target="_blank" rel="noopener noreferrer">
-            <span class="resource-type">GitHub</span><h3>Official code</h3><p>Training, DRUF, baselines, and privacy evaluation scripts.</p><b>Explore repository ↗</b>
-          </a>
-          <a href="https://huggingface.co/Stanley11/Beyond-Visual-Evidence-IDNet" target="_blank" rel="noopener noreferrer">
-            <span class="resource-type">Hugging Face</span><h3>IDNet checkpoints</h3><p>Seven full checkpoints with integrity hashes and loading instructions.</p><b>Browse models ↗</b>
-          </a>
-          <a href="https://arxiv.org/pdf/2608.12911" target="_blank" rel="noopener noreferrer">
-            <span class="resource-type">arXiv</span><h3>Research paper</h3><p>Full method, benchmark construction, evaluation, and analysis.</p><b>Read PDF ↗</b>
-          </a>
-        </div>
-        <div class="checkpoint-strip" aria-label="Released checkpoint variants">
-          <span>Base</span><span>SCRUB</span><span>NPO</span><span>LEGO</span><span>CU</span><span>RF-Entangle</span><span class="ours">DRUF / Ours</span>
+        <div class="text-links">
+          <a href="https://github.com/xubeining/Beyond-Visual-Evidence" target="_blank" rel="noopener noreferrer">Official Code Repository ↗</a>
+          <a href="https://huggingface.co/Stanley11/Beyond-Visual-Evidence-IDNet" target="_blank" rel="noopener noreferrer">IDNet Checkpoints ↗</a>
+          <a href="https://arxiv.org/abs/2608.12911" target="_blank" rel="noopener noreferrer">arXiv Paper ↗</a>
         </div>
       </div>
     </section>
 
-    <section class="section citation page-width" id="citation">
-      <div class="section-label">05 · Citation</div>
-      <div class="citation-grid">
-        <div><h2>If this work helps your research, please cite it.</h2><p><sup>*</sup> Equal contribution. <sup>†</sup> Corresponding author.</p></div>
-        <div class="bibtex-wrap">
-          <button id="copy-citation" type="button">Copy BibTeX</button>
-          <pre id="bibtex">@inproceedings{xu2026beyond,
-  title     = {Beyond Visual Evidence: Revealing and
-               Mitigating Relational Privacy Leakage in
-               Document MLLMs},
-  author    = {Xu, Beining and Wang, Hairui and Wang, Jiaxin
-               and Chen, Changsheng and Chakraborty, Anirban},
+    <section class="paper-section narrow" id="bibtex">
+      <h2>BibTeX</h2>
+      <button class="bibtex-card" id="copy-citation" type="button" aria-label="Copy BibTeX citation">
+        <span class="copy-hint">🖱️ Click here to copy BibTeX.</span>
+        <pre>@inproceedings{xu2026beyond,
+  title     = {Beyond Visual Evidence: Revealing and Mitigating
+               Relational Privacy Leakage in Document MLLMs},
+  author    = {Xu, Beining and Wang, Hairui and Wang, Jiaxin and
+               Chen, Changsheng and Chakraborty, Anirban},
   booktitle = {Proceedings of the 35th ACM International
                Conference on Multimedia},
   year      = {2026},
   note      = {Poster}
 }</pre>
-        </div>
-      </div>
+      </button>
     </section>
   </main>
 
   <footer>
-    <div class="page-width footer-inner">
-      <div><strong>Beyond Visual Evidence</strong><span>ACM Multimedia 2026</span></div>
-      <div class="footer-links"><a href="../">Academic homepage</a><a href="https://github.com/xubeining/Beyond-Visual-Evidence" target="_blank" rel="noopener noreferrer">GitHub</a><a href="#top">Back to top ↑</a></div>
-    </div>
+    <p>This project page follows the <a href="https://shailab-ipec.github.io/openfly/" target="_blank" rel="noopener noreferrer">OpenFly</a> academic project-page template.<br><a href="../">Beining Xu's academic homepage</a></p>
   </footer>
+
+  <a class="back-to-top" href="#top" aria-label="Back to top">⌃</a>
   <script src="project.js"></script>
 </body>
 </html>
